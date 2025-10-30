@@ -12,8 +12,12 @@ class MyProfileApp extends StatelessWidget {
     return MaterialApp(
       title: 'My Profile App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+      theme: ThemeData.dark().copyWith(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          brightness: Brightness.dark,
+        ),
+        scaffoldBackgroundColor: const Color(0xFF121212),
         useMaterial3: true,
       ),
       home: const WelcomeScreen(),
@@ -33,7 +37,7 @@ class WelcomeScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF2196F3), Color(0xFF21CBF3)],
+            colors: [Color(0xFF0D47A1), Color(0xFF1976D2)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -61,8 +65,8 @@ class WelcomeScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.blue,
+                        backgroundColor: Colors.blueAccent,
+                        foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -103,14 +107,16 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Profile'),
-        backgroundColor: Colors.blue,
+        backgroundColor: colorScheme.primary,
         foregroundColor: Colors.white,
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
+        backgroundColor: colorScheme.primary,
         child: const Icon(Icons.info_outline),
         onPressed: () {
           Navigator.push(
@@ -126,7 +132,7 @@ class ProfileScreen extends StatelessWidget {
             // Profile Picture
             const CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage('assets/profile.jpg'),
+              backgroundImage: AssetImage('images/DP_pic.png'),
             ),
             const SizedBox(height: 16),
 
@@ -152,6 +158,7 @@ class ProfileScreen extends StatelessWidget {
 
             // Contact Info Card
             Card(
+              color: const Color(0xFF1E1E1E),
               elevation: 3,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -164,12 +171,12 @@ class ProfileScreen extends StatelessWidget {
                       leading: Icon(Icons.email, color: Colors.blue),
                       title: Text('muntazir@example.com'),
                     ),
-                    Divider(),
+                    Divider(color: Colors.white24),
                     ListTile(
                       leading: Icon(Icons.phone, color: Colors.blue),
                       title: Text('+92 300 1234567'),
                     ),
-                    Divider(),
+                    Divider(color: Colors.white24),
                     ListTile(
                       leading: Icon(Icons.location_on, color: Colors.blue),
                       title: Text('Lahore, Pakistan'),
@@ -186,19 +193,19 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 IconButton(
                   icon: const Icon(Icons.linked_camera),
-                  color: Colors.blue,
+                  color: Colors.blueAccent,
                   iconSize: 32,
                   onPressed: () {},
                 ),
                 IconButton(
                   icon: const Icon(Icons.code),
-                  color: Colors.black,
+                  color: Colors.white,
                   iconSize: 32,
                   onPressed: () {},
                 ),
                 IconButton(
                   icon: const Icon(Icons.chat),
-                  color: Colors.lightBlue,
+                  color: Colors.lightBlueAccent,
                   iconSize: 32,
                   onPressed: () {},
                 ),
@@ -219,10 +226,12 @@ class AboutMeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('About Me'),
-        backgroundColor: Colors.blue,
+        backgroundColor: colorScheme.primary,
         foregroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
